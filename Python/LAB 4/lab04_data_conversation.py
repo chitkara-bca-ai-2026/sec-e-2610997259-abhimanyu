@@ -6,7 +6,7 @@ product_name = input("Enter Product Name : ")
 
 price = float(input("Enter Price        : "))
 
-# 3. Take quantity as input and convert it to int
+
 quantity = int(input("Enter Quantity     : "))
 
 

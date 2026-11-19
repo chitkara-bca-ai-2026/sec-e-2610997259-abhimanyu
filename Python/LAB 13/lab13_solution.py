@@ -1,7 +1,5 @@
+print("     INVENTORY CONTROL SYSTEM")
 
-print("====================================================")
-print("             INVENTORY CONTROL SYSTEM")
-print("====================================================")
 
 inventory = ["Notebook", "Pen", "Eraser", "Ruler"]
 

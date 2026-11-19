@@ -1,61 +1,28 @@
 
+username = input("Enter your username: ")
+password = input("Enter your password: ")
 
-def analyze_document():
-    sentence = input("Enter a sentence: ")
+has_min_length = len(password) >= 8
+has_digit = any(char.isdigit() for char in password)
+has_upper = any(char.isupper() for char in password)
 
-    words_count = len(sentence.split())
-    vowels_count = 0
-    consonants_count = 0
-    digits_count = 0
-    spaces_count = 0
-    special_chars_count = 0
+print("PASSWORD VALIDATION REPORT")
 
-    vowels = set("aeiouAEIOU")
+print(f"Username: {username}")
+print(f"Password: {'*' * len(password)}\n")
 
-    for char in sentence:
-        if char.isalpha():
-            if char in vowels:
-                vowels_count += 1
-            else:
-                consonants_count += 1
-        elif char.isdigit():
-            digits_count += 1
-        elif char.isspace():
-            spaces_count += 1
-        else:
-            special_chars_count += 1
+print("--- Validation Rules ---")
+length_status = "[PASS]" if has_min_length else "[FAIL]"
+digit_status = "[PASS]" if has_digit else "[FAIL]"
+upper_status = "[PASS]" if has_upper else "[FAIL]"
 
-    total_characters = len(sentence)
-    total_letters = vowels_count + consonants_count
-    vowel_percentage = (
-        (vowels_count / total_letters * 100) if total_letters > 0 else 0.0
-    )
+print(f"{length_status} Minimum 8 characters ({len(password)} characters)")
+print(f"{digit_status} At least one digit")
+print(f"{upper_status} At least one uppercase letter\n")
 
-    print("=" * 48)
-    print("DOCUMENT ANALYSIS REPORT")
-    print("=" * 48)
-    print(f"Sentence: {sentence}")
-    print(f"Total characters: {total_characters}\n")
-
-    print("--- Character Breakdown ---")
-    print(f"Words:              {words_count}")
-    print(f"Vowels:             {vowels_count}")
-    print(f"Consonants:         {consonants_count}")
-    print(f"Digits:             {digits_count}")
-    print(f"Spaces:             {spaces_count}")
-    print(f"Special characters: {special_chars_count}\n")
-
-    print("--- Summary ---")
-    print(f"Total letters: {total_letters}")
-    print(f"Vowel percentage: {vowel_percentage:.1f}%\n")
-
-    print("=" * 48)
-    print("Analysis Complete!")
-    print("=" * 48)
-
-
-if __name__ == "__main__":
-    analyze_document()
-
-
-
+print("--- Result ---")
+if has_min_length and has_digit and has_upper:
+    print("Password is VALID!")
+    print(f"Account created successfully for {username}!\n")
+else:
+    print("Password is INVALID!\n")

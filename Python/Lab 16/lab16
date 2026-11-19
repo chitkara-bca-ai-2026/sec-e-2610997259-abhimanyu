@@ -1,0 +1,121 @@
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return None
+    return a / b
+
+def modulus(a, b):
+    if b == 0:
+        return None
+    return a % b
+
+def power(base, exp=2):
+    return base ** exp
+
+def format_number(n):
+    if n == int(n):
+        return int(n)
+    return n
+
+history = []
+
+print("==================================================")
+print("         ENTERPRISE MODULAR UTILITY CALCULATOR    ")
+print("==================================================")
+
+while True:
+    print("\nSelect an operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    print("5. Modulus / Remainder (%)")
+    print("6. Power / Exponentiation (Default: Square)")
+    print("7. View Calculation History")
+    print("8. Exit")
+
+    choice = input("\nEnter your choice (1-8): ")
+
+    if choice == "1":
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        res = add(num1, num2)
+        record = str(format_number(num1)) + " + " + str(format_number(num2)) + " = " + str(format_number(res))
+        history.append(record)
+        print("[RESULT] " + record)
+
+    elif choice == "2":
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        res = subtract(num1, num2)
+        record = str(format_number(num1)) + " - " + str(format_number(num2)) + " = " + str(format_number(res))
+        history.append(record)
+        print("[RESULT] " + record)
+
+    elif choice == "3":
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        res = multiply(num1, num2)
+        record = str(format_number(num1)) + " * " + str(format_number(num2)) + " = " + str(format_number(res))
+        history.append(record)
+        print("[RESULT] " + record)
+
+    elif choice == "4":
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        res = divide(num1, num2)
+        if res == None:
+            print("[ERROR] Division by zero is not allowed.")
+        else:
+            record = str(format_number(num1)) + " / " + str(format_number(num2)) + " = " + str(format_number(res))
+            history.append(record)
+            print("[RESULT] " + record)
+
+    elif choice == "5":
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        res = modulus(num1, num2)
+        if res == None:
+            print("[ERROR] Modulus by zero is not allowed.")
+        else:
+            record = str(format_number(num1)) + " % " + str(format_number(num2)) + " = " + str(format_number(res))
+            history.append(record)
+            print("[RESULT] " + record)
+
+    elif choice == "6":
+        base = float(input("Enter base number: "))
+        exp_input = input("Enter exponent (press Enter for default 2): ")
+        if exp_input == "":
+            res = power(base)
+            exp_val = 2
+        else:
+            exp_val = float(exp_input)
+            res = power(base, exp_val)
+        record = str(format_number(base)) + " ^ " + str(format_number(exp_val)) + " = " + str(format_number(res))
+        history.append(record)
+        print("[RESULT] " + record)
+
+    elif choice == "7":
+        print("\n--- Calculation History ---")
+        if len(history) == 0:
+            print("No calculations performed yet.")
+        else:
+            count = 1
+            for item in history:
+                print(str(count) + ". " + item)
+                count = count + 1
+
+    elif choice == "8":
+        print("\nThank you for using Utility Calculator. Goodbye!")
+        break
+
+    else:
+        print("\n[ERROR] Invalid choice! Please enter a number between 1 and 8.")
